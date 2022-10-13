@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Treasure Hunt by Donga</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"   
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script> 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" 
+    integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous"></script>
+    
+    <style>
+      .flex-container {
+        display: flex;
+        flex-direction: row;
+      }
+
+      .flex-container > div {
+        background-color: #f1f1f1;
+        margin: 10px;
+        padding: 20px;
+        font-size: 30px;
+      }
+
+      /* Responsive Layout */
+      @media(max-width:600px) {
+        .flex-container {
+          flex-direction: column;
+          background-color: green;
+        }
+      }
+
+      img {
+        width: 100px;
+        height: 100px;
+      }
+
+    </style>
+
+</head>
+<body>
+
+    
+    <div class="container-fluid">
+<h1> Ashok Murali Treasure Hunt</h1>
+
+  <div class="card treasure">
+    <p class="card-header">Click on the chests to search for treasure</p>
+  </div>
+  <div class="card treasure">
+    <p class="card-header" id="chests">Number of chests checked is zero</p>
+  </div>
+  <div class="card treasure">
+    <p class="card-header" id="score">Score is unknown</p>
+  </div>
+  <div class="card treasure">
+    <p class="card-header" id="help">Help report</p>
+  </div>
+
+</div>
+<br>
+
+<script type="text/javascript">
+  var ids = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24];
+  var chestCount = 0,score=0,lastcheck=12, treasureLocation=18;
+
+  function check(position) {
+    var imgId = ids[position];
+
+  var imgE1 = document.getElementById(imgId);
+  var chestsId= document.getElementById('chests');
+  var scoreId = document.getElementById('score');
+  if(imgId== treasureLocation) {
+    imgE1.src="treasure.jpg";
+
+  } else {
+    imgE1.src="EmptyBox.jpg";
+  }
+  chestCount +=1;
+  score +=1;
+  lastcheck=position;
+  chestsId.innerHTML= 'Number of chests checked is: ' +chestCount;
+  scoreId.innerHTML= 'Score is: ' +score;
+  }
+
+  function help() {
+    var result='';
+    var lastcheckRow = Math.trunc(lastcheck/5);
+    var lastcheckCol = lastcheck%5;
+    var treasureRow = treasureLocation%5;
+    var treasureCol=Math.trunc(treasureLocation/5);
+    var helpId = document.getElementById('help');
+    var scorId = document.getElementById('score');
+
+    if(lastcheckRow==treasureRow) {
+      if(lastcheck<treasureLocation) {
+        result='Right';
+      } else if(lastcheck> treasureLocation) {
+        result='Left';
+      } else {
+        result= 'Sorry! No Help available';
+      }
+    } else if(lastcheckCol==treasureCol) {
+      if(lastcheck < treasureLocation) {
+        result='Down';
+      } else {
+        result='Up';
+      }
+    } else {
+      result= 'Sorry! No Help available';
+    }
+    score+=2;
+    helpId.innerHTML=result;
+    scoreId.innerHTML='Score is ' +score;
+  }
+
+</script>
+
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-2">
+        <img class="image" src="treasureChest.jpg" alt="casket"  id="0" onclick="check(0)" height="85px" width="85px">
+      </div>
+      <div class="col-sm-2">
+        <img class="image" src="treasureChest.jpg" alt="casket" id="1" onclick="check(1)"  height="85px" width="85px">
+      </div>
+      <div class="col-sm-2">
+        <img class="image" src="treasureChest.jpg" alt="casket" id="2" onclick="check(2)" height="85px" width="85px">
+      </div>
+      <div class="col-sm-2">
+        <img class="image" src="treasureChest.jpg" alt="casket"  id="3" onclick="check(3)"height="85px" width="85px">
+      </div>
+      <div class="col-sm-2">
+        <img class="image" src="treasureChest.jpg" alt="casket" id="4" onclick="check(4)" height="85px" width="85px">
+      </div>
+    </div>
+  </div>
+  
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-2">
+      <img class="image" src="treasureChest.jpg" alt="casket" id="5" onclick="check(5)" height="85px" width="85px">
+    </div>
+    <div class="col-sm-2">
+      <img class="image" src="treasureChest.jpg" alt="casket" id="6" onclick="check(6)" height="85px" width="85px">
+    </div>
+    <div class="col-sm-2">
+      <img class="image" src="treasureChest.jpg" alt="casket" id="7" onclick="check(7)" height="85px" width="85px">
+    </div>
+    <div class="col-sm-2">
+      <img class="image" src="treasureChest.jpg" alt="casket" id="8" onclick="check(8)" height="85px" width="85px">
+    </div>
+    <div class="col-sm-2">
+      <img class="image" src="treasureChest.jpg" alt="casket" id="9" onclick="check(9)" height="85px" width="85px">
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-2">
+        <img class="image" src="treasureChest.jpg" alt="casket" id="10" onclick="check(10)" height="85px" width="85px">
+      </div>
+      <div class="col-sm-2">
+        <img class="image" src="treasureChest.jpg" alt="casket" id="11" onclick="check(11)" height="85px" width="85px">
+      </div>
+      <div class="col-sm-2">
+        <img class="image" src="help.jpg" alt="casket"  id="12" onclick="help(12)" height="85px" width="85px">
+      </div>
+      <div class="col-sm-2">
+        <img class="image" src="treasureChest.jpg" alt="casket" id="13" onclick="check(13)" height="85px" width="85px">
+      </div>
+      <div class="col-sm-2">
+        <img class="image" src="treasureChest.jpg" alt="casket" id="14" onclick="check(14)" height="85px" width="85px">
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-2">
+        <img class="image" src="treasureChest.jpg" alt="casket" id="15" onclick="check(15)" height="85px" width="85px">
+      </div>
+      <div class="col-sm-2">
+        <img class="image" src="treasureChest.jpg" alt="casket" id="16" onclick="check(16)" height="85px" width="85px">
+      </div>
+      <div class="col-sm-2">
+        <img class="image" src="treasureChest.jpg" alt="casket" id="17" onclick="check(17)" height="85px" width="85px">
+      </div>
+      <div class="col-sm-2">
+        <img class="image" src="treasureChest.jpg" alt="casket" id="18" onclick="check(18)" height="85px" width="85px">
+      </div>
+      <div class="col-sm-2">
+        <img class="image" src="treasureChest.jpg" alt="casket" id="19" onclick="check(19)" height="85px" width="85px">
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-2">
+        <img class="image" src="treasureChest.jpg" alt="casket" id="20" onclick="check(20)" height="85px" width="85px">
+      </div>
+      <div class="col-sm-2">
+        <img class="image" src="treasureChest.jpg" alt="casket" id="21" onclick="check(21)" height="85px" width="85px">
+      </div>
+      <div class="col-sm-2">
+        <img class="image" src="treasureChest.jpg" alt="casket" id="22" onclick="check(22)" height="85px" width="85px">
+      </div>
+      <div class="col-sm-2">
+        <img class="image" src="treasureChest.jpg" alt="casket" id="23" onclick="check(23)" height="85px" width="85px">
+      </div>
+      <div class="col-sm-2">
+        <img class="image" src="treasureChest.jpg" alt="casket" id="24" onclick="check(24)" height="85px" width="85px">
+      </div>
+    </div>
+  </div>
+  
+
+</body>
+</html>
